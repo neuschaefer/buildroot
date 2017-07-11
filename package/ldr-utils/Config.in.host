@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_LDR_UTILS
+	bool "host ldr-utils"
+	help
+	  Host utilities to deal with Blackfin bootstreams (in the LDR file
+	  format).
+
+	  https://github.com/neuschaefer/ldr-utils
