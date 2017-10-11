@@ -1,6 +1,5 @@
 BR2_powerpc=y
 BR2_powerpc_750=y
-BR2_GCC_VERSION_6_X=y
 BR2_ROOTFS_POST_IMAGE_SCRIPT="board/nintendo/gamecube/post-image.sh"
 BR2_LINUX_KERNEL=y
 BR2_LINUX_KERNEL_DEFCONFIG="gamecube"
