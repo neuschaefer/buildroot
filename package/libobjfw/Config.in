@@ -1,5 +1,6 @@
 config BR2_PACKAGE_LIBOBJFW
 	bool "libobjfw"
+	depends on BR2_TOOLCHAIN_BUILDROOT_OBJC
 	help
 	  ObjFW is a portable runtime for Objective-C.
 
