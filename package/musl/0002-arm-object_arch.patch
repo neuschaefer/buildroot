@@ -1,0 +1,19 @@
+Author: Reiner Herrmann <reiner@reiner-h.de>
+Description: Use .object_arch to declare the architecture of the object file
+ binutils >= 2.27.51.20161105-1 has stricter checking for this and no longer builds
+ with .arch when newer .arch directives are used in the same file.
+ See also: https://sourceware.org/ml/binutils/2006-09/msg00054.html
+Bug: http://www.openwall.com/lists/musl/2017/01/04/6
+Bug-Debian: https://bugs.debian.org/852214
+
+--- a/src/thread/arm/atomics.s
++++ b/src/thread/arm/atomics.s
+@@ -84,7 +84,7 @@
+ 	bx lr
+ 
+ /* Tag this file with minimum ISA level so as not to affect linking. */
+-.arch armv4t
++.object_arch armv4t
+ .eabi_attribute 6,2
+ 
+ .data
