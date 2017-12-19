@@ -152,7 +152,7 @@ QEMU_USER = $(HOST_DIR)/bin/qemu-$(HOST_QEMU_ARCH)
 #-------------------------------------------------------------
 # Target-qemu
 
-QEMU_DEPENDENCIES = host-pkgconf host-python libglib2 zlib pixman
+QEMU_DEPENDENCIES = host-pkgconf host-python libglib2 zlib pixman util-linux
 
 # Need the LIBS variable because librt and libm are
 # not automatically pulled. :-(
