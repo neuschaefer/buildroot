@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBOBJFW
+	bool "libobjfw"
+	help
+	  ObjFW is a portable runtime for Objective-C.
+
+	  https://heap.zone/objfw/
+
+# TODO: Add more options
