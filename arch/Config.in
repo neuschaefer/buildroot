@@ -205,6 +205,15 @@ config BR2_powerpc64le
 	  http://www.power.org/
 	  http://en.wikipedia.org/wiki/Powerpc
 
+config BR2_riscv64
+	bool "RISC-V"
+	select BR2_ARCH_IS_64
+	select BR2_ARCH_HAS_MMU_MANDATORY
+	help
+	  RISC-V is a an open RISC architecture.
+	  https://riscv.org/
+	  https://en.wikipedia.org/wiki/RISC-V
+
 config BR2_s390x
 	bool "S/390x"
 	select BR2_ARCH_IS_64
@@ -457,6 +466,10 @@ endif
 
 if BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le
 source "arch/Config.in.powerpc"
+endif
+
+if BR2_riscv64
+source "arch/Config.in.riscv64"
 endif
 
 if BR2_s390x
