@@ -1,0 +1,14 @@
+config BR2_PACKAGE_HOST_GAMECUBE_TOOLS
+	bool "host gamecube-tools"
+	#depends on HOST_PACKAGE_LIBFREEIMAGE
+	#depends on host C++
+	help
+	  This package contains several tools for use with a Nintendo
+	  GameCube system:
+
+	  * elf2dol: Converts an ELF file to a DOL file (the native
+	             GameCube executable format)
+	  * gcdsptool: TODO
+	  * gxtexconv is not included, to avoid depending on libfreeimage
+
+	  https://github.com/devkitPro/gamecube-tools/

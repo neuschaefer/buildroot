@@ -1,0 +1,31 @@
+From 994e620cb060a49bd13b6850b63b258132e77acd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Date: Mon, 24 Jul 2017 07:05:51 +0200
+Subject: [PATCH] Add an empty m4/ directory to make autoreconf happy
+
+---
+ .gitignore | 1 -
+ m4/dummy   | 1 +
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+ create mode 100644 m4/dummy
+
+diff --git a/.gitignore b/.gitignore
+index 618df96..5c8d7fb 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -23,5 +23,4 @@ gxtexconv
+ install-sh
+ libtool
+ ltmain.sh
+-m4
+ missing
+diff --git a/m4/dummy b/m4/dummy
+new file mode 100644
+index 0000000..634608f
+--- /dev/null
++++ b/m4/dummy
+@@ -0,0 +1 @@
++This is a dummy file to make patch create the m4/ directory.
+-- 
+2.11.0
+

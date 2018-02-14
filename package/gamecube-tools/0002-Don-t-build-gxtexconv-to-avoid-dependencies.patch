@@ -1,0 +1,44 @@
+From d019bc4180469f5f55ecef7e1ebf3ae4b8fe45d7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Date: Tue, 25 Jul 2017 01:50:22 +0200
+Subject: [PATCH] Don't build gxtexconv to avoid dependencies
+
+gxtexconv depends on libfreeimage and OpenGL, both of which aren't
+available everywhere.
+---
+ Makefile.am  | 4 ++--
+ configure.ac | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index c98d473..0ce952c 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,9 +2,9 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-bin_PROGRAMS = gcdsptool elf2dol gxtexconv
++bin_PROGRAMS = gcdsptool elf2dol
+ 
+-noinst_LTLIBRARIES      = libgdopcode.la libdxtn.la libsquish.la
++noinst_LTLIBRARIES      = libgdopcode.la libsquish.la
+ 
+ libgdopcode_la_SOURCES	= gdopcode/dbg.h gdopcode/dtypes.h gdopcode/assemble.cpp gdopcode/disassemble.cpp \
+ 			  gdopcode/disassemble.h gdopcode/opcodes.cpp gdopcode/opcodes.h
+diff --git a/configure.ac b/configure.ac
+index bd89cce..9b70d5c 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -42,7 +42,7 @@ LIBS="$save_LIBS"
+ if test "x$freeimage_result" = "xyes"; then
+ 	FREEIMAGE_LIBS="-lfreeimage ${WIN_FREEIMAGE_LIBS} -lstdc++ -lm"
+ else
+-	 AC_MSG_ERROR(['libfreeimage' not found])
++	AC_MSG_WARN(['libfreeimage' not found])
+ fi
+ AC_SUBST([FREEIMAGE_LIBS], [${FREEIMAGE_LIBS}])
+ 
+-- 
+2.11.0
+
