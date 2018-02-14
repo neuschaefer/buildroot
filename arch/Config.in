@@ -205,6 +205,15 @@ config BR2_powerpc64le
 	  http://www.power.org/
 	  http://en.wikipedia.org/wiki/Powerpc
 
+config BR2_s390x
+	bool "S/390x"
+	select BR2_ARCH_IS_64
+	select BR2_ARCH_HAS_MMU_MANDATORY
+	help
+	  IBM S/390x (also known as z/Architecture) is the CPU architecture
+	  used in IBM mainframes.
+	  https://en.wikipedia.org/wiki/Linux_on_z_Systems
+
 config BR2_sh
 	bool "SuperH"
 	select BR2_ARCH_HAS_MMU_OPTIONAL
@@ -448,6 +457,10 @@ endif
 
 if BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le
 source "arch/Config.in.powerpc"
+endif
+
+if BR2_s390x
+source "arch/Config.in.s390x"
 endif
 
 if BR2_sh
