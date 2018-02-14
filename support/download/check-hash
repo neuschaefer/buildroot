@@ -11,13 +11,13 @@ set -e
 #       in the .hash file
 #
 # Exit codes:
-#   0:  the hash file exists and the file to check matches all its hashes,
-#       or the hash file does not exist
+#   0:  the hash file exists and the file to check matches all its hashes
 #   1:  unknown command-line option
 #   2:  the hash file exists and the file to check does not match at least
 #       one of its hashes
 #   3:  the hash file exists and there was no hash to check the file against
 #   4:  the hash file exists and at least one hash type is unknown
+#   5:  the hash file does not exist
 
 while getopts :q OPT; do
     case "${OPT}" in
@@ -37,8 +37,8 @@ if [ -z "${h_file}" ]; then
 fi
 # Does the hash-file exist?
 if [ ! -f "${h_file}" ]; then
-    printf "WARNING: no hash file for %s\n" "${base}" >&2
-    exit 0
+    printf "ERROR: no hash file for %s\n" "${base}" >&2
+    exit 5
 fi
 
 # Check one hash for a file
