@@ -99,6 +99,13 @@ config BR2_TOOLCHAIN_BUILDROOT_CXX
 	  C++ language and you want C++ libraries to be installed on
 	  your target system.
 
+config BR2_TOOLCHAIN_BUILDROOT_OBJC
+	bool "Enable Objective-C support"
+	help
+	  Enable this option if you want your toolchain to support the
+	  Objective-C language. If you select this option, it is recommended
+	  that you also select ObjFW.
+
 comment "Fortran support needs a toolchain w/ wchar"
 	depends on BR2_TOOLCHAIN_HAS_LIBQUADMATH
 	depends on !BR2_USE_WCHAR # libquadmath
