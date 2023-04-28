@@ -10,5 +10,11 @@ config BR2_PACKAGE_MICROPYTHON
 
 	  http://micropython.org
 
+config BR2_PACKAGE_MICROPYTHON_EXTRA_CFLAGS
+	string "Additional micropython CFLAGS"
+	depends on BR2_PACKAGE_MICROPYTHON
+	help
+	  Extra
+
 comment "micropython needs a toolchain w/ threads, dynamic library"
 	depends on !BR2_TOOLCHAIN_HAS_THREADS || BR2_STATIC_LIBS

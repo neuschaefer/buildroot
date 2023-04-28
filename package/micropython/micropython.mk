@@ -29,6 +29,8 @@ ifeq ($(BR2_xtensa),y)
 MICROPYTHON_CFLAGS = -DMICROPY_NLR_SETJMP=1
 endif
 
+MICROPYTHON_CFLAGS += $(BR2_PACKAGE_MICROPYTHON_EXTRA_CFLAGS)
+
 # When building from a tarball we don't have some of the dependencies that are in
 # the git repository as submodules
 MICROPYTHON_MAKE_OPTS += \
