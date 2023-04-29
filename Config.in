@@ -865,6 +865,19 @@ endchoice
 comment "RELocation Read Only (RELRO) needs shared libraries"
 	depends on !BR2_SHARED_LIBS
 
+config BR2_LINK_ZTEXT
+	bool "Disallow text section relocations (TEXTRELs)"
+	depends on BR2_SHARED_LIBS
+	default n # ideally: BR2_TOOLCHAIN_USES_MUSL
+	help
+	  Pass "-z text" to the linker to detect TEXTRELs and throw an error if
+	  they occur.
+
+	  This is recommended when building a system with musl-libc, because
+	  TEXTRELs are not supported on musl-libc:
+
+	    https://www.openwall.com/lists/musl/2020/09/25/4
+
 config BR2_FORTIFY_SOURCE_ARCH_SUPPORTS
 	bool
 	default y
