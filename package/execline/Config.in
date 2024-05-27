@@ -18,4 +18,17 @@ config BR2_PACKAGE_EXECLINE_MULTICALL
 	help
 	  Build execline as a multicall binary to save disk space.
 
+config BR2_PACKAGE_EXECLINE_LIBEXEC
+	bool "install execline commands to /libexec"
+	help
+	  By default, all commands that comprise execline (execlineb, importas,
+	  wait, ...) are installed to /bin. This isn't neccesarily a problem,
+	  but it can cause issues if these commands are expected to behave like
+	  their shell counterparts (execline "wait", for example, execs into
+	  another program after it is done waiting).
+
+	  If this option is set, all execline commands are installed to
+	  /libexec/execline/, and /bin/execlineb is a script that adds
+	  /libexec/execline to PATH and then executes the real execlineb.
+
 endif

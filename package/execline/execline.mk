@@ -19,6 +19,7 @@ EXECLINE_CONF_OPTS = \
 	--with-lib=$(STAGING_DIR)/lib/skalibs \
 	$(if $(BR2_STATIC_LIBS),,--disable-allstatic) \
 	$(if $(BR2_PACKAGE_EXECLINE_MULTICALL),--enable-multicall,) \
+	$(if $(BR2_PACKAGE_EXECLINE_LIBEXEC),--bindir=/libexec/execline,) \
 	$(SHARED_STATIC_LIBS_OPTS)
 
 define EXECLINE_CONFIGURE_CMDS
@@ -34,6 +35,14 @@ define EXECLINE_REMOVE_STATIC_LIB_DIR
 endef
 
 EXECLINE_POST_INSTALL_TARGET_HOOKS += EXECLINE_REMOVE_STATIC_LIB_DIR
+
+ifeq ($(BR2_PACKAGE_EXECLINE_LIBEXEC),y)
+define EXECLINE_LIBEXEC_WRAPPER
+	$(INSTALL) -D -m 0755 package/execline/execlineb.libexec $(TARGET_DIR)/bin/execlineb
+endef
+
+EXECLINE_POST_INSTALL_TARGET_HOOKS += EXECLINE_LIBEXEC_WRAPPER
+endif
 
 define EXECLINE_INSTALL_TARGET_CMDS
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(TARGET_DIR) install

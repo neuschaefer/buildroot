@@ -1,0 +1,4 @@
+#!/libexec/execline/execlineb -S0
+/libexec/execline/importas -D /usr/sbin:/usr/bin:/sbin:/bin PATH PATH
+/libexec/execline/export PATH /libexec/execline:${PATH}
+/libexec/execline/exec -a $0 /libexec/execline/execlineb $@
