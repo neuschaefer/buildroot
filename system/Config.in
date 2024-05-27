@@ -460,6 +460,38 @@ config BR2_TARGET_GENERIC_GETTY_OPTIONS
 	  Refer to getty --help for details.
 endif
 
+menuconfig BR2_TARGET_SUPERVISION_TREE
+	bool "Maintain a process supervision tree at /var/service"
+	depends on BR2_INIT_BUSYBOX || BR2_INIT_SYSV
+
+if BR2_TARGET_SUPERVISION_TREE
+choice
+	prompt "Supervisor"
+
+config BR2_TARGET_SUPERVISION_TREE_RUNIT
+	bool "runsvdir"
+	help
+	  Use runsvdir (provided by runit or BusyBox) to run the supervision tree.
+
+config BR2_TARGET_SUPERVISION_TREE_S6
+	bool "s6-svscan"
+	depends on BR2_USE_MMU # s6
+	select BR2_PACKAGE_S6
+	help
+	  Use s6-svscan (provided by s6) to run the supervision tree.
+
+endchoice
+
+config BR2_TARGET_SUPERVISION_TREE_COMMAND
+	string
+	default "/usr/bin/runsvdir /var/service" if BR2_TARGET_SUPERVISION_TREE_RUNIT
+	default "/bin/s6-svscan /var/service" if BR2_TARGET_SUPERVISION_TREE_S6
+endif
+
+comment "process supervision tree needs sysv or busybox init"
+	depends on !BR2_INIT_BUSYBOX && !BR2_INIT_SYSV
+
+
 config BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW
 	bool "remount root filesystem read-write during boot"
 	default y
